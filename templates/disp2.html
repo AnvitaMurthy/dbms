@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto+Slab&display=swap" rel="stylesheet">
+
+  
+  <style type="text/css">
+    body{
+      background-color: ;
+    }
+    #hh2{
+      margin-left: 450px;
+    }
+    #logs2{
+      color: white;
+      text-decoration: none;
+    }
+.form-check{
+
+	margin-left: 10px;
+}
+.alert{
+      margin-left: 350px;
+      width: 500px;
+      margin-top: 5px;
+      border-radius: 12px;
+    }
+
+#navbar{
+  width: 40px;
+}
+#nav-link{
+
+}
+#prof1{
+  color: #f7f7f7;
+}
+.tab1{
+  caption-side: top;
+}
+
+  </style>
+
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+ 
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Event Tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('red_home')}}" >Home</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Events
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item active" href="{{url_for('events')}}">Upcoming</a>
+          <a class="dropdown-item bg-dark" href="{{url_for('pevents')}}" style="color: white;">Earlier</a>
+        </div>
+      </li>
+      <li class="dropdown" style="margin-top: 0px;">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Clubs
+        </a>
+
+    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton" style="background: black;">
+    <a class="dropdown-item bg-dark" href="{{url_for('Onyx')}}" style="color:white;" >Onyx</a>
+    <a class="dropdown-item bg-dark" href="{{url_for('IEEE')}}" style="color:white;">IEEE</a>
+    <a class="dropdown-item bg-dark" href="{{url_for('ISSA')}}" style="color:white;">ISSA</a>
+    <a class="dropdown-item bg-dark" href="{{url_for('UCSP')}}" style="color:white;">UCSP</a>
+    <a class="dropdown-item bg-dark" href="{{url_for('force_i')}}" style="color: white;">Force Ikshavaku</a>
+  </div>
+</li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle text-secondary" href="#" id="logs2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Profile
+        </a>
+        <div class="dropdown-menu dropdown-menu-bottom bg-dark">
+          <a class="dropdown-item bg-dark" href="{{url_for('sevents')}}" style="color: white;">My Events</a>
+          <a class="dropdown-item bg-dark" href="{{url_for('settings')}}" style="color: white;">Settings</a>
+        </div>
+      </div>
+      <button class="btn btn-info my-2 my-sm-0" type="submit"><a id="logs2" href="{{url_for('logout')}}">Logout</a></button>
+    </form>
+  </div>
+</nav>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+  {% endwith %}
+
+  <div class="container"><h2 align="centre" id="hh2" style="font-family: 'Roboto Slab', serif;margin-top: 20px;">Upcoming Events</h2>
+  </div>
+
+  
+
+
+  <script type="text/javascript">
+	function check_uncheck(){
+		var p="check2";
+		document.getElementById("check1").checked = false;
+		if(document.getElementById("check2").checked==true && document.getElementById("check3").checked==true && document.getElementById("check4").checked==true && document.getElementById("check5").checked==true && document.getElementById("check6").checked==true
+		&& document.getElementById("check7").checked==true )
+		{
+			document.getElementById("check1").checked=true;
+			document.getElementById("check1").disabled =false;
+			document.getElementById(p).checked=false;
+			document.getElementById("check3").checked=false;
+			document.getElementById("check4").checked=false;
+			document.getElementById("check5").checked=false;
+			document.getElementById("check6").checked=false;
+			document.getElementById("check7").checked=false;
+
+		}
+	}
+	function check_for_check1(){
+      document.getElementById("check1").checked=true;
+      document.getElementById("check2").checked=false;
+      document.getElementById("check3").checked=false;
+      document.getElementById("check4").checked=false;
+      document.getElementById("check5").checked=false;
+      document.getElementById("check6").checked=false;
+      document.getElementById("check7").checked=false;
+    
+	}
+
+	function filter_disp(){
+
+
+	}
+
+</script>
+
+  <div style="width: 100%">
+    <div style="float: left;width: 15%;margin-top: 100px;font-family: 'Roboto Slab', serif" class="table">
+	<p style="font-family: 'Roboto Slab';margin-bottom: 5px;"><b>Filter events</b></p>
+  <form method='POST'>
+  <div class="form-check">
+    {% if 'All' in list1  %}
+  <input class="form-check-input" type="checkbox" value="All" id="check1" checked="" onclick="check_for_check1()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck1">
+    All
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="All" id="check1" onclick="check_for_check1()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck1">
+    All
+  </label>
+  {% endif %}
+
+</div>
+<div class="form-check">
+  {% if 'IEEE' in list1 %}
+  <input class="form-check-input" type="checkbox" value="IEEE" id="check2" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    IEEE
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="IEEE" id="check2" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    IEEE
+  </label>
+  {% endif %}
+</div>
+
+<div class="form-check">
+  {% if 'Onyx' in list1 %}
+  <input class="form-check-input" type="checkbox" value="Onyx" id="check3" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    Onyx
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="Onyx" id="check3" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    Onyx
+  </label>
+  {% endif %}
+</div>
+
+<div class="form-check">
+  {% if 'Force Ikshvaku' in list1 %}
+  <input class="form-check-input" type="checkbox" value="Force Ikshvaku" id="check4" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    Force Ikshvaku
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="Force Ikshvaku" id="check4" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    Force Ikshvaku
+  </label>
+  {% endif %}
+</div>
+
+<div class="form-check">
+  {% if 'ISSA' in list1 %}
+  <input class="form-check-input" type="checkbox" value="ISSA" id="check5" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    ISSA
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="ISSA" id="check5" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    ISSA
+  </label>
+  {% endif %}
+</div>
+
+<div class="form-check">
+  {% if 'UCSP' in list1 %}
+  <input class="form-check-input" type="checkbox" value="UCSP" id="check6" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    UCSP
+  </label>
+  {% else %}
+   <input class="form-check-input" type="checkbox" value="UCSP" id="check6" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    UCSP
+  </label>
+  {% endif %}
+</div>
+
+<div class="form-check">
+  {% if 'NIE' in list1 %}
+  <input class="form-check-input" type="checkbox" value="NIE" id="check7" checked="" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    NIE
+  </label>
+  {% else %}
+  <input class="form-check-input" type="checkbox" value="NIE" id="check7" onclick="check_uncheck()" name="filter_system">
+  <label class="form-check-label" for="defaultCheck2">
+    NIE
+  </label>
+  {% endif %}
+</div>
+<div style="margin-left: 5px; margin-top: 3px;">
+  <button type="submit" class="btn btn-info  my-sm-0">Display</button>
+</div>
+</form>
+	</div>
+  <div class="vl"></div>
+
+
+
+  <div class="table-responsive" style="width: 80%">
+  <table id="tab1" class="table table-bordered table-striped" style="font-family: 'PT Serif', serif;caption-side: top;">
+    <caption><b>Number of events being displayed currently: {{no[0][0]}}/{{tot[0][0]}}</b></caption>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Conducted By</th>
+      <th scope="col">Event Name</th>
+      <th scope="col">Event Description</th>
+      <th scope="col">Seats Left</th>
+      <th scope="col" style="width: 110px;">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Venue</th>
+      <th scope="col">Big event</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+        {% for row in ev %} 
+            <tr id="tab2">
+                {% if row[0]=='Onyx' %}
+                <th><a href="{{url_for('Onyx')}}">{{row[0]}}</a></th>
+                {% elif row[0] == 'IEEE' %}
+                <th><a href="{{url_for('IEEE')}}">{{row[0]}}</a></th>
+                {% elif row[0] == 'Force Ikshvaku' %}
+                <th><a href="{{url_for('force_i')}}">{{row[0]}}</a></th>
+                {% elif row[0] == 'ISSA' %}
+                <th><a href="{{url_for('ISSA')}}">{{row[0]}}</a></th>
+                {% elif row[0] == 'UCSP' %}
+                <th><a href="{{url_for('UCSP')}}">{{row[0]}}</a></th>
+
+
+                {% else %}
+                <th><a href="#">{{row[0]}}</a></th>
+                {% endif %}
+                <td><b>{{row[1]}}</b></td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[7]}}</td>
+                {% if row[3]==0 %}
+                <td>N/A</td>
+                {% else %}
+                <td><a href="{{url_for('reg',e__name=row[1])}}">Register</a></td>
+                {% endif %}
+
+                
+            </tr>
+        {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
